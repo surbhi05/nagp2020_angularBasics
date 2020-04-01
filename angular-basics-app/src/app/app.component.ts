@@ -11,5 +11,5 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  pageTitle: string = "User Management Portal test"
+  pageTitle: string = "User Management Portal"
 }
