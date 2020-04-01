@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 })
 export class UserListComponent {
     pageTitle: string = "User List";
+    filterInputPlaceholder: string = "Enter name here";
     users: any[] = [
         {
             "name": "Neha Jain",

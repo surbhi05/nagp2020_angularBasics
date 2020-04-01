@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-2">Filter name:</div>
       <div class="col-md-4">
-        <input type="text" placeholder="Enter name"/>
+        <input type="text" [placeholder]="filterInputPlaceholder" />
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
       <table class="table" *ngIf="users && users.length">
         <thead>
           <tr>
-            <th>Name</th>
+            <th title="name">Name</th>
             <th>Email</th>
             <th>Contact Number</th>
             <th>Username</th>
