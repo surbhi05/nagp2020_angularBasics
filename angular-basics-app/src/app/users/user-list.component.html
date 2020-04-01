@@ -23,6 +23,7 @@
             <th>Contact Number</th>
             <th>Username</th>
             <th>Age</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +33,11 @@
             <td>{{ user.phoneNumber }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.age }}</td>
+            <td>
+              <button (click)="deleteRecord(user.id)" class="btn btn-danger">
+                Delete Record
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
