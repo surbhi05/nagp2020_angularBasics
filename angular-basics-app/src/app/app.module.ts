@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './users/user-list.component';
+import { ConvertToDisplayName } from './users/cover-to-display-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    ConvertToDisplayName
   ],
   imports: [
     BrowserModule,
