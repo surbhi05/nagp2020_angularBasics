@@ -2,5 +2,115 @@
   <div class="card-header">
     {{ pageTitle }}
   </div>
-  <div class="card-body"></div>
+  <div class="card-body">
+    <form novalidate (ngSubmit)="save(userForm)" #userForm="ngForm">
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="txtName">
+          First Name
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="txtName"
+            type="text"
+            placeholder="Enter Name"
+            required
+            minlength="5"
+            [(ngModel)]="user.name"
+            name="name"
+            #nameVar="ngModel"
+            [ngClass]="{
+              'is-invalid': (nameVar.touched || nameVar.dirty) && !nameVar.valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="nameVar.errors?.required">
+              Please enter your name.
+            </span>
+            <span *ngIf="nameVar.errors?.minlength">
+              Name must be longer than 5 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="textEmail">
+          Email Address
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="textEmail"
+            type="text"
+            placeholder="Enter Email"
+            required
+            [(ngModel)]="user.email"
+            name="email"
+            #emailVar="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                (emailVar.touched || emailVar.dirty) && !emailVar.valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="emailVar.errors?.required">
+              Please enter your email address.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label" for="textPhoneNumber">
+          Phone Number
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="textPhoneNumber"
+            type="text"
+            placeholder="Enter phone number"
+            required
+            [(ngModel)]="user.phoneNumber"
+            name="phoneNumber"
+            #phoneNumberVar="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                (phoneNumberVar.touched || phoneNumberVar.dirty) &&
+                !phoneNumberVar.valid
+            }"
+          />
+          <span class="invalid-feedback">
+            <span *ngIf="phoneNumberVar.errors?.required">
+              Please enter your phone number.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button
+            class="btn btn-primary mr-3"
+            type="submit"
+            style="width:80px"
+            [title]="
+              userForm.valid
+                ? 'Save your entered data'
+                : 'Disabled until the form data is valid'
+            "
+            [disabled]="!userForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+
+<br />Touched: {{ userForm.touched }}
+<br />Dirty: {{ userForm.dirty }} 
+<br />Valid: {{ userForm.valid }}
+<br />Value: {{ userForm.value | json }}
