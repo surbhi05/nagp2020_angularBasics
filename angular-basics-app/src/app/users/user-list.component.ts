@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IUsers } from './users';
 
 @Component({
-    selector: "um-users",
     templateUrl: "./user-list.component.html"
 })
 export class UserListComponent {
