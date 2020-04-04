@@ -5,4 +5,6 @@ export interface IUsers{
     phoneNumber: string;
     username: string;
     age: number;
+    salary: number;
+    dob: Date;
 }

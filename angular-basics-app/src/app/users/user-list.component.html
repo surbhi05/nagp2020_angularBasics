@@ -27,6 +27,8 @@
             <th>Contact Number</th>
             <th>Username</th>
             <th>Age</th>
+            <th>Salary</th>
+            <th>DOB</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -37,6 +39,8 @@
             <td>{{ user.phoneNumber }}</td>
             <td>{{ user.username }}</td>
             <td>{{ user.age }}</td>
+            <td>{{ user.salary | currency:"INR" }}</td>
+            <td>{{ user.dob | date | uppercase }}</td>
             <td>
               <button (click)="deleteRecord(user.id)" class="btn btn-danger">
                 Delete Record
