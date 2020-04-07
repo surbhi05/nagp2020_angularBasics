@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUsers } from './users';
+import { Users } from './users';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -7,19 +7,10 @@ import { NgForm } from '@angular/forms';
 })
 export class UserDetailComponent {
     pageTitle: string = "User Detail";
-    user: IUsers;
+    user: Users;
 
     constructor() {
-        this.user = {
-            "id": 0,
-            "name": "",
-            "email": "",
-            "phoneNumber": "",
-            "username": "",
-            "age": 0,
-            "salary": 0,
-            "dob": new Date()
-        };
+        this.user = new Users();
     }
 
     save(userForm: NgForm) {

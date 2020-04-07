@@ -1,24 +1,23 @@
-import { Component } from '@angular/core';
-import { IUsers } from './users';
+import { Component, OnInit } from '@angular/core';
+import { Users } from './users';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     templateUrl: "./user-detail-reactive.component.html"
 })
-export class UserDetailReactiveComponent {
+export class UserDetailReactiveComponent implements OnInit {
     pageTitle: string = "User Detail - Reactive";
-    user: IUsers;
+    user: Users = new Users();
+    userForm: FormGroup;
+    name: FormControl;
 
-    constructor() {
-        this.user = {
-            "id": 0,
-            "name": "",
-            "email": "",
-            "phoneNumber": "",
-            "username": "",
-            "age": 0,
-            "salary": 0,
-            "dob": new Date()
-        };
+    ngOnInit() {
+        this.name = new FormControl();
+        this.userForm = new FormGroup({
+            name: this.name,
+            email: new FormControl(),
+            phoneNumber: new FormControl()
+        });
     }
 
     save() {

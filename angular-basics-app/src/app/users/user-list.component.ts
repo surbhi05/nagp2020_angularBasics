@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUsers } from './users';
+import { Users } from './users';
 
 @Component({
     templateUrl: "./user-list.component.html"
@@ -15,8 +15,8 @@ export class UserListComponent {
         this._filterText = value;
         this.filteredUsers = this.filterText ? this.updateFilter(this.filterText) : this.users;
     }
-    filteredUsers: IUsers[];
-    users: IUsers[] = [{
+    filteredUsers: Users[];
+    users: Users[] = [{
         "id": 1,
         "name": "Neha Jain",
         "email": "nj@gmail.com",
@@ -44,7 +44,7 @@ export class UserListComponent {
             this.users.splice(index, 1)
         }
     }
-    updateFilter(filterBy: string): IUsers[] {
+    updateFilter(filterBy: string): Users[] {
         filterBy = filterBy.toLowerCase();
         return this.users.filter(user =>
             user.name.toLowerCase().indexOf(filterBy) !== -1);
