@@ -14,18 +14,18 @@
             id="txtName"
             type="text"
             placeholder="Enter Name"
-            required
-            minlength="5"
             formControlName="name"
             [ngClass]="{
-              'is-invalid': (name.touched || name.dirty) && !name.valid
+              'is-invalid':
+                (userForm.get('name').touched || userForm.get('name').dirty) &&
+                !userForm.get('name').valid
             }"
           />
           <span class="invalid-feedback">
-            <span *ngIf="name.errors?.required">
+            <span *ngIf="userForm.get('name').errors?.required">
               Please enter your name.
             </span>
-            <span *ngIf="name.errors?.minlength">
+            <span *ngIf="userForm.get('name').errors?.minlength">
               Name must be longer than 5 characters.
             </span>
           </span>
@@ -42,7 +42,6 @@
             id="textEmail"
             type="text"
             placeholder="Enter Email"
-            required
             formControlName="email"
             [ngClass]="{
               'is-invalid':
@@ -69,7 +68,6 @@
             id="textPhoneNumber"
             type="text"
             placeholder="Enter phone number"
-            required
             formControlName="phoneNumber"
             [ngClass]="{
               'is-invalid':
@@ -109,6 +107,6 @@
 
 <br />Touched: {{ userForm.touched }} <br />Dirty: {{ userForm.dirty }}
 <br />Valid: {{ userForm.valid }} <br />Value: {{ userForm.value | json }}
-<br />Name error: {{ name.errors | json }}
+<br />Name error: {{ userForm.get("name").errors | json }}
 <br />Email error: {{ userForm.controls.email.errors | json }}
 <br />Phone number error: {{ userForm.get("phoneNumber").errors | json }}
