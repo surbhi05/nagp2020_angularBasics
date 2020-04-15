@@ -1,7 +1,7 @@
 import { Users } from './users/users';
 
-export class UserService{
-    
+export class UserService {
+
     private users: Users[] = [{
         "id": 1,
         "name": "Neha Jain",
@@ -22,7 +22,21 @@ export class UserService{
         "dob": new Date("10-28-1993")
     }];
 
-    public getUsers(){
+    public getUsers() {
         return this.users;
+    }
+
+    public addUser(user: Users): void {
+        user.id = this.users.length;
+        user.username = user.name;
+
+        this.users.push(user);
+    }
+
+    public deleteUser(id: number) {
+        let index: number = this.users.findIndex(user => user.id == id);
+        if (index != -1) {
+            this.users.splice(index, 1)
+        }
     }
 }

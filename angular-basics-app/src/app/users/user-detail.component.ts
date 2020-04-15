@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Users } from './users';
 import { NgForm } from '@angular/forms';
 import { LoggingService } from '../logging.service';
+import { UserService } from '../user.service';
 
 @Component({
     templateUrl: "./user-detail.component.html",
@@ -11,11 +12,11 @@ export class UserDetailComponent {
     pageTitle: string = "User Detail";
     user: Users;
 
-    constructor(private loggingService:LoggingService) {
+    constructor(private loggingService:LoggingService, private userService: UserService) {
         this.user = new Users();
     }
 
-    save(userForm: NgForm) {
-        this.loggingService.log(JSON.stringify(userForm.value));
+    save(userForm: NgForm) {        
+        this.userService.addUser(userForm.value);
     }
 }

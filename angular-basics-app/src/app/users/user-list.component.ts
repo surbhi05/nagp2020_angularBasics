@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Users } from './users';
-import { UserService } from '../user.services';
+import { UserService } from '../user.service';
 import { LoggingService } from '../logging.service';
 
 @Component({
     templateUrl: "./user-list.component.html",
-    providers: [UserService, LoggingService]
+    providers: [LoggingService]
 })
 export class UserListComponent {
     pageTitle: string = "User List";
@@ -27,11 +27,7 @@ export class UserListComponent {
         this.filteredUsers = this.users;
     }
     deleteRecord(id: number): void {
-        this.loggingService.log("User deleted");
-        let index: number = this.users.findIndex(user => user.id == id);
-        if (index != -1) {
-            this.users.splice(index, 1)
-        }
+        this.userService.deleteUser(id);
     }
     updateFilter(filterBy: string): Users[] {
         filterBy = filterBy.toLowerCase();
