@@ -16,6 +16,7 @@ export class UserDetailComponent {
     }
 
     save(userForm: NgForm) {
+        this.userService.newUserAdded.emit(userForm.value.name);
         this.userService.addUser(userForm.value);
     }
 }

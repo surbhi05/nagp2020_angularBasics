@@ -1,6 +1,6 @@
 import { Users } from './users/users';
 import { LoggingService } from './logging.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -26,6 +26,8 @@ export class UserService {
         "salary": 1200000,
         "dob": new Date("10-28-1993")
     }];
+
+    newUserAdded: EventEmitter<string> = new EventEmitter<string>();
 
     constructor(private loggingService: LoggingService) { }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,12 @@ export class AppComponent {
   pageTitle: string = "User Management Portal";
   newUser: string = "";
 
+  constructor(private userService: UserService){
+    this.userService.newUserAdded.subscribe((userName:string) =>{
+      this.userAdded(userName);
+    });
+  }
+
   userAdded = (userName: string): void => {
     this.newUser = `New User added: ${userName}`;
     let self = this;
@@ -16,7 +23,7 @@ export class AppComponent {
     const interval = setInterval(function () {
       self.newUser = "";
       clearInterval(interval);
-    }, 20000);
+    }, 5000);
   }
 
 }
