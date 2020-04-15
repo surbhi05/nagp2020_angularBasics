@@ -1,5 +1,10 @@
 import { Users } from './users/users';
+import { LoggingService } from './logging.service';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+    providedIn: 'root'
+})
 export class UserService {
 
     private users: Users[] = [{
@@ -22,11 +27,16 @@ export class UserService {
         "dob": new Date("10-28-1993")
     }];
 
+    constructor(private loggingService: LoggingService) { }
+
     public getUsers() {
         return this.users;
     }
 
     public addUser(user: Users): void {
+
+        this.loggingService.log(JSON.stringify(user))
+
         user.id = this.users.length;
         user.username = user.name;
 
@@ -34,6 +44,7 @@ export class UserService {
     }
 
     public deleteUser(id: number) {
+        this.loggingService.log("User deleted");
         let index: number = this.users.findIndex(user => user.id == id);
         if (index != -1) {
             this.users.splice(index, 1)

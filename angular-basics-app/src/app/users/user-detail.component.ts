@@ -5,18 +5,17 @@ import { LoggingService } from '../logging.service';
 import { UserService } from '../user.service';
 
 @Component({
-    templateUrl: "./user-detail.component.html",
-    providers:[LoggingService]
+    templateUrl: "./user-detail.component.html"
 })
 export class UserDetailComponent {
     pageTitle: string = "User Detail";
     user: Users;
 
-    constructor(private loggingService:LoggingService, private userService: UserService) {
+    constructor( private userService: UserService) {
         this.user = new Users();
     }
 
-    save(userForm: NgForm) {        
+    save(userForm: NgForm) {
         this.userService.addUser(userForm.value);
     }
 }

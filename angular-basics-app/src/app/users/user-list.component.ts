@@ -4,8 +4,7 @@ import { UserService } from '../user.service';
 import { LoggingService } from '../logging.service';
 
 @Component({
-    templateUrl: "./user-list.component.html",
-    providers: [LoggingService]
+    templateUrl: "./user-list.component.html"
 })
 export class UserListComponent {
     pageTitle: string = "User List";
@@ -21,7 +20,7 @@ export class UserListComponent {
     filteredUsers: Users[];
     users: Users[];
 
-    constructor(private userService: UserService, private loggingService: LoggingService) {
+    constructor(private userService: UserService) {
         // const userService = new UserService();
         this.users = userService.getUsers();
         this.filteredUsers = this.users;
