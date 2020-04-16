@@ -13,6 +13,9 @@
         />
       </div>
     </div>
+    <div class="row" *ngIf="selectedUser">
+      <user-view [udetails]="selectedUser" (hideUserDetails)="hideuserDetails($event)"></user-view>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <h4>Filtered by: {{filterText}}</h4>
@@ -29,6 +32,7 @@
             <th>Age</th>
             <th>Salary</th>
             <th>DOB</th>
+            <th>View</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -41,6 +45,11 @@
             <td>{{ user.age }}</td>
             <td>{{ user.salary | currency:"INR" }}</td>
             <td>{{ user.dob | date | uppercase }}</td>
+            <td>
+              <button (click)="viewUserDetails(user.id)" class="btn btn-primary">
+                View Record
+              </button>
+            </td>
             <td>
               <button (click)="deleteRecord(user.id)" class="btn btn-danger">
                 Delete Record

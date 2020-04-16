@@ -8,6 +8,7 @@ import { UserListComponent } from './users/user-list.component';
 import { ConvertToDisplayName } from './users/cover-to-display-name.pipe';
 import { UserDetailComponent } from './users/user-detail.component';
 import { UserDetailReactiveComponent } from './users/user-detail-reactive.component';
+import { UserViewComponent } from './users/user-view.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserDetailReactiveComponent } from './users/user-detail-reactive.compon
     UserListComponent,
     UserDetailComponent,
     UserDetailReactiveComponent,
-    ConvertToDisplayName
+    ConvertToDisplayName,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,

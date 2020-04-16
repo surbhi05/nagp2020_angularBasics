@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Users } from './users';
 import { UserService } from '../user.service';
-import {interval} from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 @Component({
     templateUrl: "./user-list.component.html"
@@ -19,12 +19,40 @@ export class UserListComponent implements OnDestroy {
     }
     filteredUsers: Users[];
     users: Users[];
+    selectedUser: Users;
+    subscription: Subscription = new Subscription();
 
 
     constructor(private userService: UserService) {
         // const userService = new UserService();
         this.users = userService.getUsers();
         this.filteredUsers = this.users;
+
+        const customObservable = Observable.create((observer) => {
+            let count = 0;
+            setInterval(() => {
+                observer.next(count++);
+
+                if (count === 5) {
+                    observer.complete();
+                }
+
+                if (count > 3) {
+                    observer.error(new Error('Count greater than 3!!!'));
+
+                }
+            }, 1000);
+        });
+
+        this.subscription.add(customObservable.subscribe(count => {
+            console.log(count);
+        }, error => {
+            console.log(error);
+            alert(error);
+        },
+            () => {
+                console.log("Observable completed!");
+            }));
     }
     deleteRecord(id: number): void {
         this.userService.deleteUser(id);
@@ -35,6 +63,15 @@ export class UserListComponent implements OnDestroy {
             user.name.toLowerCase().indexOf(filterBy) !== -1);
     }
 
+    viewUserDetails(id: number) {
+        this.selectedUser = this.users.find(u => u.id === id);
+    }
+
+    hideuserDetails(event) {
+        if (event) {
+            this.selectedUser = null;
+        }
+    }
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
